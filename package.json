@@ -1,6 +1,6 @@
 {
   "name": "social-contracts",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "description",
   "main": "index.js",
   "module": "./index.js",
@@ -13,11 +13,9 @@
   },
   "author": "",
   "license": "ISC",
-  "peerDependencies": {
-    "react": "^15.4.1",
-    "react-dom": "^15.4.1"
-  },
   "devDependencies": {
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.20.0",
     "babel-loader": "^6.2.9",

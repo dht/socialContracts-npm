@@ -1,9 +1,2 @@
-npm unpublish @quickstudio/flex-editor@0.1.92
-npm unpublish @quickstudio/flex-editor@0.1.93
-npm unpublish @quickstudio/flex-editor@0.1.94
-npm unpublish @quickstudio/flex-editor@0.1.95
-npm unpublish @quickstudio/flex-editor@0.1.96
-npm unpublish @quickstudio/flex-editor@0.1.97
-npm unpublish @quickstudio/flex-editor@0.1.98
-npm unpublish @quickstudio/flex-editor@0.1.99
-npm unpublish @quickstudio/flex-editor@0.1.100
+npm unpublish social-contracts@0.1.0
+npm unpublish social-contracts@0.1.1
