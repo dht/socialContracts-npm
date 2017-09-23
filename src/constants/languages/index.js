@@ -1,7 +1,9 @@
 import en from './en';
+import he from './he';
 
 const i18n_strings = {
     en,
+    he,
 }
 
 let language = 'en';

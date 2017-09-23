@@ -1,6 +1,6 @@
 {
   "name": "social-contracts",
-  "version": "0.1.3",
+  "version": "0.1.7",
   "description": "description",
   "main": "index.js",
   "module": "./index.js",

@@ -87,9 +87,17 @@ export const setAppState = (value) => {
     }
 }
 
-export const setAvailabilityString = (value) => {
+export const setAvailabilityString = (channel, value) => {
     return {
         type: ActionTypes.SET_AVAILABILITY_STRING,
+        channel,
+        value,
+    }
+}
+
+export const setAvailability = (value) => {
+    return {
+        type: ActionTypes.SET_AVAILABILITY,
         value,
     }
 }

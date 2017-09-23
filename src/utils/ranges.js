@@ -62,94 +62,21 @@ export const rangesToList = (ranges) => {
 export const timeStringToDate = (time) => {
     const now = new Date();
 
-   try {
-       const timeParts = time.split(':'),
-           hours = parseInt(timeParts[0]),
-           minutes = parseInt(timeParts[1]);
+    try {
+        const timeParts = time.split(':'),
+            hours = parseInt(timeParts[0]),
+            minutes = parseInt(timeParts[1]);
 
-       now.setMinutes(minutes);
-       now.setHours(hours);
-       now.setSeconds(0);
-       now.setMilliseconds(0);
+        now.setMinutes(minutes);
+        now.setHours(hours);
+        now.setSeconds(0);
+        now.setMilliseconds(0);
 
-       return now;
+        return now;
 
-   } catch (e) {
-       return now;
-   }
-}
-
-export const dateToTimeString = (date) => {
-   return date.getHours() + ':' + leadingZero(date.getMinutes());
-}
-
-export const lowerOrEqualTimeString = (timeString1, timeString2) => {
-    const date1 = timeStringToDate(timeString1),
-        date2 = timeStringToDate(timeString2);
-
-    return date1 <= date2 ? dateToTimeString(date1) : dateToTimeString(date2);
-}
-
-export const higherOrEqualTimeString = (timeString1, timeString2) => {
-    const date1 = timeStringToDate(timeString1),
-        date2 = timeStringToDate(timeString2);
-
-    return date1 >=  date2 ? dateToTimeString(date1) : dateToTimeString(date2);
-}
-
-export const getRanges = (state) => {
-
-    const {appState, uiState} = state,
-        {currentPlan, currentChannel} = uiState,
-        {plans = {}} = appState,
-        ranges = (plans[currentPlan] || {})[currentChannel];
-
-        return ranges;
-}
-
-export const getRange = (state) => {
-
-    const {uiState} = state,
-        {currentRangeId} = uiState,
-        ranges = getRanges(state);
-
-        return ranges[`r${currentRangeId}`];
-}
-
-export const newValueForChannel = (channel) => {
-
-    switch (channel) {
-        case 'phone':
-        case 'whatsapp':
-           return {start:'8:00', end:'10:00'};
-
-        case 'email':
-        case 'facebook':
-            return {start:'8:00'};
+    } catch (e) {
+        return now;
     }
-}
-
-export const nextId = (state) => {
-    const ranges = getRanges(state) || {};
-    return getMaxId(ranges) + 1;
-}
-
-// {start: '10:00', end: '18:00'}
-export const rangeToRangeArray = (range) => {
-    let output = [];
-
-    output.push(timeStringToNumber(range.start));
-
-    if (range.end) {
-        output.push(timeStringToNumber(range.end));
-    }
-
-    return output;
-}
-
-
-const leadingZero = (number) => {
-    return number >= 10 ? number : '0' + number;
 }
 
 export const timeStringToNumber = (time) => {
@@ -174,7 +101,7 @@ export const numberToTimeString = (time, hours24 = false) => {
 
     try {
         const hours = Math.floor(time),
-            minutes = leadingZero(Math.floor((time - hours) * 60)),
+            minutes = leadingZero(Math.round((time - hours) * 60)),
             isPM = hours >= 12;
 
         if (hours24) {
@@ -184,6 +111,78 @@ export const numberToTimeString = (time, hours24 = false) => {
         }
     } catch (e) {
 
+    }
+
+    return output;
+}
+
+const leadingZero = (number) => {
+    return number >= 10 ? number : '0' + number;
+}
+
+export const dateToTimeString = (date) => {
+    return date.getHours() + ':' + leadingZero(date.getMinutes());
+}
+
+export const lowerOrEqualTimeString = (timeString1, timeString2) => {
+    const date1 = timeStringToDate(timeString1),
+        date2 = timeStringToDate(timeString2);
+
+    return date1 <= date2 ? dateToTimeString(date1) : dateToTimeString(date2);
+}
+
+export const higherOrEqualTimeString = (timeString1, timeString2) => {
+    const date1 = timeStringToDate(timeString1),
+        date2 = timeStringToDate(timeString2);
+
+    return date1 >=  date2 ? dateToTimeString(date1) : dateToTimeString(date2);
+}
+
+export const getRanges = (state) => {
+
+    const {appState, uiState} = state,
+        {currentPlan, currentChannel} = uiState,
+        {plans = {}} = appState,
+        ranges = (plans[currentPlan] || {})[currentChannel];
+
+    return ranges;
+}
+
+export const getRange = (state) => {
+
+    const {uiState} = state,
+        {currentRangeId} = uiState,
+        ranges = getRanges(state);
+
+    return ranges[`r${currentRangeId}`];
+}
+
+export const newValueForChannel = (channel) => {
+
+    switch (channel) {
+        case 'phone':
+        case 'whatsapp':
+            return {start:'8:00', end:'10:00'};
+
+        case 'email':
+        case 'facebook':
+            return {start:'8:00'};
+    }
+}
+
+export const nextId = (state) => {
+    const ranges = getRanges(state) || {};
+    return getMaxId(ranges) + 1;
+}
+
+// {start: '10:00', end: '18:00'}
+export const rangeToRangeArray = (range) => {
+    let output = [];
+
+    output.push(timeStringToNumber(range.start));
+
+    if (range.end) {
+        output.push(timeStringToNumber(range.end));
     }
 
     return output;
