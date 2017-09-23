@@ -1,4 +1,4 @@
-import appState, {ActionTypes, initialState} from '../../reducers/appState/appState';
+import appState, {ActionTypes, initialState} from '../../src/reducers/appState/appState';
 import {testState} from '../../_mocks/appState';
 
 import clone from 'clone';

@@ -1,4 +1,4 @@
-import {contractToAR, contractToNow, contractToText, setFixedDate} from '../../utils/contracts';
+import {contractToAR, contractToNow, contractToText, setFixedDate} from '../../src/utils/contracts';
 import contract, {contract2} from '../../_mocks/contract-1ffb5554';
 
 beforeAll(() => {
